@@ -11,5 +11,6 @@ interface ScheduleStopsRepository: JpaRepository<ScheduleStop, ScheduleStop.Sche
             (scheduleId: String, scheduleDate: Long, line: String): List<ScheduleStop>
     fun findTop100ByScheduleStopsKeyStopIdBetweenAndPredictedTimeGreaterThanEqualOrderByPredictedTime(stopIdLow: Int, stopIdHigh: Int, currentTime: Long): List<ScheduleStop>
     fun findTop100ByScheduleStopsKeyStopIdAndPredictedTimeGreaterThanEqualOrderByPredictedTime(stopId: Int, timestamp: Long): List<ScheduleStop>
+    fun findAllByPredictedTimeBetweenOrderByPredictedTime(predTimeLow: Long, predTimeHigh: Long): List<ScheduleStop>
 
 }
