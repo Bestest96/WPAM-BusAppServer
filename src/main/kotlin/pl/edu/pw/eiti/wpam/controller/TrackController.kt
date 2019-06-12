@@ -26,7 +26,7 @@ class TrackController(private val trackService: TrackService) {
         val startId = Pair(startIdLow, startIdHigh)
         val endId = Pair(endIdLow, endIdHigh)
         val result = trackService.aStar(startId, endId, timestamp, penaltyType)
-                ?: throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Dijkstra failed to find a solution!")
+                ?: throw ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "A* failed to find a solution!")
         return List(result.lines.size) { i -> TrackDto(result.lines[i], result.waitTime[i], if (result.stops[i] == null) null else result.stops[i]!!.mapIndexed { j, x -> StopTimeDto(x!!, result.names[i]!![j], result.stopsXY[i]!![j])}, result.from[i], result.to[i], result.time[i])}
     }
 }
