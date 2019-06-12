@@ -61,7 +61,7 @@ class TrackServiceImpl(private val busStopsConnectionsRepository: BusStopsConnec
         rwLock.writeLock().unlock()
     }
 
-    override fun dijkstra(start: Pair<Int, Int>, end: Pair<Int, Int>, timestamp: Long, penaltyType: String): TrackService.DijkstraResults? {
+    override fun aStar(start: Pair<Int, Int>, end: Pair<Int, Int>, timestamp: Long, penaltyType: String): TrackService.DijkstraResults? {
         rwLock.readLock().lock()
         val startRange = if (start.first == start.second) Pair(start.first / 100 * 100, start.first / 100 * 100 + 99) else start
         val endRange = if (end.first == end.second) Pair(end.first / 100 * 100, end.first / 100 * 100 + 99) else end
